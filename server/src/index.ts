@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/authRoutes';
-import { homeRoute } from './routes/homeRoute';
+import adminRoutes from './routes/adminRoutes';
 
 dotenv.config();
 
@@ -15,8 +15,11 @@ app.use(cookieParser())
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
 
-app.use('/', homeRoute);
+app.get('/', (req: Request, res: Response) => {
+    res.status(200).send('Hello from TypeScript + Express!')
+})
 
 const port = process.env.port || 3000;
 
